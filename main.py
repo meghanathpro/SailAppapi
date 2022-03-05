@@ -38,7 +38,7 @@ async def read_root(s: str, code: int, auth_code: str,state: str):
             <h2>Success : {code}<h2>
             <h3>Auth_ID : {auth_code}<h3>
             <h3>State : {state}<h3>
-            <a href="https://8590yx.deta.dev/finalauth?auth_detail={auth_code}&secret_key=&client_id0="> Grant Token</a>
+            <a href="https://sailapp.el.r.appspot.com/finalauth?auth_detail={auth_code}&secret_key=&client_id0="> Grant Token</a>
             </div>
         </body>
 
@@ -48,9 +48,9 @@ async def read_root(s: str, code: int, auth_code: str,state: str):
 
 # 3.Final accesstoken retriving and checking basic details
 @app.get("/finalauth",response_class=HTMLResponse)
-async def read_item(auth_detail: str, secret_key: str, client_id0:str):
+async def read_item(auth_detail: str, client_id0:str):
 
-    redirect_uri="https://8590yx.deta.dev/redirect"
+    #redirect_uri="https://8590yx.deta.dev/redirect"
     
     #session=accessToken.SessionModel(client_id=client_id0,secret_key=secret_key,redirect_uri=redirect_uri,response_type="code", grant_type="authorization_code",state=None)
     session=session_data[0]
@@ -61,7 +61,6 @@ async def read_item(auth_detail: str, secret_key: str, client_id0:str):
     resp_id="/usermenu?name_id="+client_id0+"&auth_hash="+access_token
 
     return RedirectResponse(url= resp_id)
-
 
 
 @app.get("/usermenu")
